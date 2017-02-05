@@ -1,18 +1,53 @@
 window.onload = function() {
-	var body  = document.body;
+	// Create table //
 	var table = document.createElement("table");
+	table.id = "table";
+	table.style.borderSpacing = "0px";
 	
-	for (var y=0; y<5; y++) {
+	for (var y=0; y<10; y++) {
 		var tableRow = table.insertRow();
 		
-		for (var x=0; x<5; x++) {
+		for (var x=0; x<10; x++) {
 			var tableData = tableRow.insertCell();
 			
-			var stringCoordinate = "(" + x.toString() + ", " + y.toString() + ")";
-			var textNode = document.createTextNode(stringCoordinate);
-			tableData.appendChild(textNode);
+			tableData.style.width = "20px";
+			tableData.style.height = "20px";
+			tableData.style.border = "1px solid black";
+			tableData.style.backgroundColor = "#" + x.toString().repeat(2) + "55" + y.toString().repeat(2);
 		}
 	}
 	
-	body.appendChild(table);
+	document.body.appendChild(table);
+	
+	// Create randomiser button //
+	var button = document.createElement("button");
+	button.onclick = randomiseTableColours;
+	
+	var text = document.createTextNode("Randomise colours!");
+	button.appendChild(text);
+	
+	button.style.margin = "10px";
+	
+	document.body.appendChild(button);
+}
+
+function randomiseTableColours() {
+	function getRandomColour() {
+		function getRandomHexDigit() {
+			return Math.floor(Math.random()*16).toString(16);
+		}
+		
+		var colour = "#";
+		for (var i=0; i<6; i++) {
+			colour += getRandomHexDigit();
+		}
+		return colour;
+	}
+	
+	var table = document.getElementById("table");
+	for (var y=0, tableRow; tableRow = table.rows[y]; y++) {
+		for (var x=0, tableData; tableData = tableRow.cells[x]; x++) {
+			tableData.style.backgroundColor = getRandomColour();
+		}
+	}
 }
