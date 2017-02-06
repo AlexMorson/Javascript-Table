@@ -2,7 +2,7 @@ window.onload = function() {
 	// Create table //
 	var table = document.createElement("table");
 	table.id = "table";
-	table.style.borderSpacing = "0px";
+	table.style.borderSpacing = "0em";
 	
 	for (var y=0; y<10; y++) {
 		var tableRow = table.insertRow();
@@ -10,9 +10,10 @@ window.onload = function() {
 		for (var x=0; x<10; x++) {
 			var tableData = tableRow.insertCell();
 			
-			tableData.style.width = "20px";
-			tableData.style.height = "20px";
-			tableData.style.border = "1px solid black";
+			tableData.style.width = "1em";
+			tableData.style.height = "1em";
+			tableData.style.padding = "0em";
+			tableData.style.border = "0.05em solid";
 			tableData.style.backgroundColor = "#" + x.toString().repeat(2) + "55" + y.toString().repeat(2);
 		}
 	}
@@ -26,7 +27,7 @@ window.onload = function() {
 	var text = document.createTextNode("Randomise colours!");
 	button.appendChild(text);
 	
-	button.style.margin = "10px";
+	button.style.margin = "1em";
 	
 	document.body.appendChild(button);
 }
